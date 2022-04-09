@@ -15,6 +15,7 @@ class TaskableTest {
     }
 
     @Test
+<<<<<<< Updated upstream
     void testIsWellSortedTrue() {
     	assertTrue(o.isWellSorted(trueseq0));
     }
@@ -22,6 +23,10 @@ class TaskableTest {
     @Test
     void testIsWellSortedFalse() {
     	assertFalse(o.isWellSorted(falseseq0));
+=======
+    void testIsWellSorted() {
+	assertTrue(true);
+>>>>>>> Stashed changes
     }
 
 }
