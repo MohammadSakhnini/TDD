@@ -1,30 +1,42 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Task implements Taskable {
-    private String[][] priority;
+    private String[][] prioirty;
 
-    public Task(String[][] priority) {
-	this.priority = priority;
+    public Task(String[][] prioirty) {
+	this.prioirty = prioirty;
     }
 
-    public boolean isWellSorted(String[] sequence) {
+    public boolean isWellSorted(String[] sequence)
+    {
+        for (int iPrio = 0; iPrio < prioirty.length; iPrio++)
+        {
+            for (int jPrio = prioirty[iPrio].length - 1; jPrio >= 1; jPrio--)
+            {
+                for (int i = sequence.length - 1; i >= 0; i--)
+                {
+                    if (sequence[i] == prioirty[iPrio][jPrio])
+                    {
+                        if (Contains(sequence, i + 1, prioirty[iPrio][jPrio - 1]))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
 
-	for (String string : sequence) {
-
-	}
-
-	return false;
+        return true;
     }
 
-    public static String[] flatten(String[][] arr) {
-	List<String> result = new ArrayList<String>();
-	for (int i = 0; i < arr.length; i++) {
-	    for (int j = 0; j < arr[i].length; j++) {
-		result.add(arr[i][j]);
-	    }
-	}
-	return result.toArray(new String[0]);
+    private boolean Contains(String[] sequence, int from, String value)
+    {
+        for (int i = from; i < sequence.length; i++)
+        {
+            if (sequence[i] == value)
+                return true;
+        }
+
+        return false;
     }
 
 }
+

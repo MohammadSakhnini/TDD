@@ -9,13 +9,11 @@ class TaskableTest {
 	String[] falseseq0;
     @BeforeEach
     void setUp() throws Exception {
-    	o = new Task();
     	trueseq0 = new String[]{ "A" , "B", "C", "D" };
     	falseseq0 = new String[] {"D" , "C", "B", "A" };
     }
 
     @Test
-<<<<<<< Updated upstream
     void testIsWellSortedTrue() {
     	assertTrue(o.isWellSorted(trueseq0));
     }
@@ -23,10 +21,6 @@ class TaskableTest {
     @Test
     void testIsWellSortedFalse() {
     	assertFalse(o.isWellSorted(falseseq0));
-=======
-    void testIsWellSorted() {
-	assertTrue(true);
->>>>>>> Stashed changes
     }
 
 }
