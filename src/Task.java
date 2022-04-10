@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -16,11 +17,11 @@ public class Task implements Taskable {
 	var sequence = Arrays.asList(seq);
 	var map = initMap(prio);
 	fillMap(map, prio);
+	System.out.println(map);
 	for (int i = 0; i < sequence.size(); i++) {
 	    for (var entry : map.entrySet()) {
 		var key = entry.getKey();
 		var value = entry.getValue();
-		var itr = value.iterator();
 		if (sequence.get(i) == key) {
 		    if (value.isEmpty()) {
 			removeValueFromMap(map, key);
@@ -36,7 +37,6 @@ public class Task implements Taskable {
 
     private static void removeValueFromMap(HashMap<String, List<String>> map, String valueToRemove) {
 	for (var entry : map.entrySet()) {
-	    var key = entry.getKey();
 	    var value = entry.getValue();
 	    var itr = value.iterator();
 	    while (itr.hasNext()) {
@@ -69,6 +69,12 @@ public class Task implements Taskable {
 		}
 	    }
 	}
+	for (var entry : map.entrySet()) {
+	    var value = entry.getValue();
+	    var set = new HashSet<>(value);
+	    value.clear();
+	    value.addAll(set);
+	}
     }
 
     private static String[] flatten(String[][] arr) {
@@ -85,6 +91,12 @@ public class Task implements Taskable {
     public String toString() {
 	var map = initMap(prio);
 	fillMap(map, prio);
+	for (var entry: map.entrySet()) {
+	    var value = entry.getValue();
+	    var set = new HashSet<>(value);
+	    value.clear();
+	    value.addAll(set);
+	}
         return map.toString();
     }
 
