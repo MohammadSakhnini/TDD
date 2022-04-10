@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-	var prio = new String[][] { { "A", "B" }, { "B", "C" }};
+	var prio = new String[][] { { "A", "C" }, { "C", "D" },{"B","C","D"}};
 	var task = new Task(prio);
 	
 	String[] seq1 = new String[] { "A", "B", "C", "D" };
@@ -17,6 +17,7 @@ public class Main {
 	System.out.println(task.isWellSorted(seq4));
 	System.out.println(task.isWellSorted(seq5));
 	System.out.println(task.isWellSorted(seq6));
+	System.out.println(task);
     }
 
     

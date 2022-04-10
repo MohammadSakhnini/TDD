@@ -11,7 +11,7 @@ public class Task implements Taskable {
     public Task(String[][] prio) {
 	this.prio = prio;
     }
-    
+
     public boolean isWellSorted(String[] seq) {
 	var sequence = Arrays.asList(seq);
 	var map = initMap(prio);
@@ -26,18 +26,7 @@ public class Task implements Taskable {
 			removeValueFromMap(map, key);
 			continue;
 		    } else {
-			for (String j : sequence.subList(0, i+1)) {
-			    while(itr.hasNext()){
-				var t = itr.next();
-				if (t == j) {
-				    itr.remove();
-				    removeValueFromMap(map, t);
-				    continue;
-				} else {
-				    return false;
-				}
-			    }
-			}
+			return false;
 		    }
 		}
 	    }
@@ -50,7 +39,7 @@ public class Task implements Taskable {
 	    var key = entry.getKey();
 	    var value = entry.getValue();
 	    var itr = value.iterator();
-	    while(itr.hasNext()){
+	    while (itr.hasNext()) {
 		var i = itr.next();
 		if (i == valueToRemove) {
 		    itr.remove();
@@ -72,10 +61,12 @@ public class Task implements Taskable {
 
     private static void fillMap(HashMap<String, List<String>> map, String[][] prio) {
 	for (var seq : prio) {
-	    var letter = seq[seq.length - 1];
-	    var rest = Arrays.copyOfRange(seq, 0, seq.length - 1);
-	    for (var value : rest) {
-		map.get(letter).add(value);
+	    var temp = Arrays.copyOfRange(seq, 1, seq.length);
+	    for (int i = 0; i < temp.length; i++) {
+		var temp1 = Arrays.copyOfRange(seq, 0, i + 1);
+		for (int j = 0; j < temp1.length; j++) {
+		    map.get(temp[i]).add(temp1[j]);
+		}
 	    }
 	}
     }
@@ -89,6 +80,12 @@ public class Task implements Taskable {
 	}
 	return result.toArray(new String[0]);
     }
+    
+    @Override
+    public String toString() {
+	var map = initMap(prio);
+	fillMap(map, prio);
+        return map.toString();
+    }
 
 }
-
